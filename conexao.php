@@ -12,5 +12,12 @@ function conectar()
 }
 
 
-
+function executarSQL($conexao, $sql){
+    $result = mysqli_query($conexao, $sql);
+    if ($result === false) {
+        echo "Erro ao executar o comando SQL." .
+            mysqli_errno($conexao) . ":". mysqli_error($conexao);
+}
+return $result;
+}
 ?>
