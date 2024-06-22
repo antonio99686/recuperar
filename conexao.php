@@ -1,7 +1,14 @@
 <?php
 function conectar()
 {
-    $conexao = mysqli_connect("localhost", "root", "", "recuperar");
+    require_once "config.php";
+    $conexao = mysqli_connect(
+        $config['host'],
+        $config['user'],
+        $config['pass'],
+        $config['db']
+    );
+
     if ($conexao === false) {
         echo "Erro ao conectar á base dados.N° do erro" .
             mysqli_connect_errno() . "." .
@@ -12,12 +19,12 @@ function conectar()
 }
 
 
-function executarSQL($conexao, $sql){
+function executarSQL($conexao, $sql)
+{
     $result = mysqli_query($conexao, $sql);
     if ($result === false) {
         echo "Erro ao executar o comando SQL." .
-            mysqli_errno($conexao) . ":". mysqli_error($conexao);
+            mysqli_errno($conexao) . ":" . mysqli_error($conexao);
+    }
+    return $result;
 }
-return $result;
-}
-?>
