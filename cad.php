@@ -1,6 +1,6 @@
 <?php
 require_once "conexao.php";
-$conexao = conectar();
+$conexao = conectarr();
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];

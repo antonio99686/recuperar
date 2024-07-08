@@ -87,7 +87,7 @@ try {
     $mail->Subject = "Recuperação de senha do sistema";
     $mail->Body = 'Olá,<br><br>
     Recebemos uma solicitação para redefinir a senha da sua conta. Para prosseguir com a redefinição, clique no link abaixo:<br><br>
-    <a href="http://' . $_SERVER['SERVER_NAME'] . '/recuperar/nova_senha.php?email='
+    <a href="http://localhost:8080/recuperar/nova_senha.php?email='
         . $usuario['email'] . '&token=' . $token . '">Clique aqui para redefinir sua senha</a><br><br>
     Se você não solicitou a alteração de senha, por favor, ignore este e-mail.<br><br>
     Atenciosamente,<br>
@@ -97,12 +97,13 @@ try {
     echo "";
 
     // gravar recuperar senha 
+    date_default_timezone_set('America/Sao_paulo');
     $data = new DateTime('now');
     $agora = $data->format('Y-m-d H:i:s');
     $sql2 = "INSERT INTO recuperer_senha (email,token,data_criacao,usado) 
     VALUES ('" . $usuario['email'] . "','$token','$agora', 0 )";
     $result = executarSQL($conexao, $sql2);
-
+   
 
 } catch (Exception $e) {
     echo "<script>
